@@ -31,7 +31,7 @@ module "db" {
   source = "git::https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-db.git//modules/rds-postgres?ref=v1"
 
   name_prefix                = "mecanica-identity"
-  db_name                    = "identity"
+  db_name                    = "identity_db"
   vpc_id                     = data.aws_ssm_parameter.vpc_id.insecure_value
   subnet_ids                 = split(",", data.aws_ssm_parameter.subnet_ids.insecure_value)
   allowed_security_group_ids = [data.aws_ssm_parameter.node_sg.insecure_value]
@@ -59,7 +59,7 @@ output "app_secrets" {
 | Nome | Tipo | Default | Descrição |
 |---|---|---|---|
 | `name_prefix` | `string` | — | Prefixo dos recursos (`^[a-z][a-z0-9-]{2,40}$`). Gera RDS, subnet group, SG e secret `<prefix>-db` |
-| `db_name` | `string` | — | Nome do banco criado na instância (`^[a-z][a-z0-9_]{0,62}$`) |
+| `db_name` | `string` | — | Nome do banco criado na instância (`^[a-z][a-z0-9_]{0,62}$`). O RDS recusa palavras reservadas do Postgres (`identity` falha com `InvalidParameterValue` no `CreateDBInstance`, e o `terraform test` com mock não pega isso): use `<svc>_db` |
 | `vpc_id` | `string` | — | VPC do security group do RDS (a mesma do EKS) |
 | `subnet_ids` | `list(string)` | — | Subnets do DB subnet group (no mínimo 2, em AZs diferentes) |
 | `allowed_security_group_ids` | `list(string)` | — | Security groups com acesso à porta do Postgres (no mínimo 1) |
