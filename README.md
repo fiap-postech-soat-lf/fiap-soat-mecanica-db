@@ -2,7 +2,7 @@
 
 Módulo Terraform **`rds-postgres`** da **Fase 4** da Oficina Mecânica SOAT15 - LF (Tech Challenge FIAP SOAT). Cada serviço com banco SQL (`identity`, `os`, `billing`) cria o próprio RDS chamando este módulo no seu `infra/`.
 
-Veja também o [diagrama geral da arquitetura](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/diagrama/arquitetura-aws-fase4.png) e a [ADR-F4-05 (database per service)](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/adr/ADR-F4-05-database-per-service.md).
+Veja também o [diagrama geral da arquitetura](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/diagrama/arquitetura-aws-fase4.png) e a [ADR-F4-05 (database per service)](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/adr/ADR-F4-05-database-per-service.md). Vídeo da entrega: [assistir no Vimeo](https://vimeo.com/1246945589).
 
 O módulo cria, todos com o nome `<name_prefix>-db`:
 - o DB subnet group;
@@ -119,7 +119,3 @@ Os serviços consomem a tag móvel `v1`. Mudança compatível: nova `v1.x.y` e a
 ## CI
 
 O `ci.yml` chama o reusable `terraform-ci.yml@v1` do [`fiap-soat-mecanica-k8s`](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s) (check `ci / terraform`: `fmt`, `init -backend=false`, `validate` e `test`).
-
-## Origem
-
-Adaptado do repositório `-db` da Fase 3 do grupo (usado só para consulta). Diferenças: nomes derivados de `name_prefix` (um RDS por serviço), uma regra de ingress por SG permitido, SG sem egress, gp3 criptografado, senha de 32 caracteres e outputs para o contrato infra → CD (`jdbc_url`, `username`, `password`).
