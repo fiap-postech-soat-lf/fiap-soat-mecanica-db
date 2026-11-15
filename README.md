@@ -1,6 +1,6 @@
 # fiap-soat-mecanica-db
 
-Módulo Terraform **`rds-postgres`** da **Fase 4** da Oficina Mecânica do Braia (Tech Challenge FIAP SOAT). Cada serviço com banco SQL (`identity`, `os`, `billing`) cria o próprio RDS chamando este módulo no seu `infra/`.
+Módulo Terraform **`rds-postgres`** da **Fase 4** da Oficina Mecânica SOAT15 - LF (Tech Challenge FIAP SOAT). Cada serviço com banco SQL (`identity`, `os`, `billing`) cria o próprio RDS chamando este módulo no seu `infra/`.
 
 Veja também o [diagrama geral da arquitetura](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/diagrama/arquitetura-aws-fase4.png) e a [ADR-F4-05 (database per service)](https://github.com/fiap-postech-soat-lf/fiap-soat-mecanica-k8s/blob/main/docs/arquitetura-fase4/adr/ADR-F4-05-database-per-service.md).
 
