@@ -1,5 +1,5 @@
 # RDS Postgres de um servico: subnet group, security group, senha aleatoria, secret
-# <name_prefix>-db no Secrets Manager e a instancia. Adaptado do -db da Fase 3 do grupo.
+# <name_prefix>-db no Secrets Manager e a instancia.
 # O modulo nao declara provider nem backend. Tudo e destrutivel (destroy a cada janela).
 
 locals {
